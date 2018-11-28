@@ -1,0 +1,89 @@
+snirsh
+
+###########################
+### File Description    ###
+###########################
+README - this file...
+SimpleSetPerformanceAnalyzer - an analyzer that will give us running times of everything
+CollectionFacadeSet - a wrapper for our Analyzer
+SimpleHashSet - an abstract class that Open and Closed hashset will inherit from
+OpenHashSet - an open hash set java file open hash set will be an array of Buckets(*)
+Closed - a closed hash set java file
+Bucket - (*)a wrapper of linked list for the opened hash set
+###########################
+### Design              ###
+###########################
+a lot of the design of SimpleHashSet has been modified in order for it to be a good abstract class for Open and Closed
+Hash set.
+###########################
+###Implementation Issues###
+###########################
+-xlint
+###########################
+###     ANSWERS         ###
+###########################
+3. the deletion in closedHashSet is done with moving to the object we want to delete and instead of putting a null
+over it we FLAG it with a special String.
+5.
++---------------+--------------------------------++---------------+--------------------------------+
+|               | data comparison with data1.txt ||               | data comparison with data2.txt |
++---------------+--------------------------------++---------------+--------------------------------+
+| ClosedHashSet | 319576                         || ClosedHashSet | 27                             |
++---------------+--------------------------------++---------------+--------------------------------+
+| OpenHashSet   | 87994                          || OpenHashSet   | 34                             |
++---------------+--------------------------------++---------------+--------------------------------+
+| HashSet       | 70                             || HashSet       | 6                              |
++---------------+--------------------------------++---------------+--------------------------------+
+| LinkedList    | 51630                          || LinkedList    | 27142                          |
++---------------+--------------------------------++---------------+--------------------------------+
+| TreeSet       | 53                             || TreeSet       | 41                             |
++---------------+--------------------------------++---------------+--------------------------------+
+| FASTEST       | TreeSet                        || FASTEST       | HashSet                        |
++---------------+--------------------------------++---------------+--------------------------------+
+
++---------------+----------------------------------------------+---------------+---------------------------------------+
+|               | contains comparison with 'hi' and data1.txt: |               |contains with '-13170890158' and data1 |
++---------------+----------------------------------------------+---------------+---------------------------------------+
+| ClosedHashSet | 9357                                         | ClosedHashSet | 2203851                               |
++---------------+----------------------------------------------+---------------+---------------------------------------+
+| OpenHashSet   | 5740                                         | OpenHashSet   | 1191024                               |
++---------------+----------------------------------------------+---------------+---------------------------------------+
+| HashSet       | 1505                                         | HashSet       | 92                                    |
++---------------+----------------------------------------------+---------------+---------------------------------------+
+| LinkedList    | 1112048                                      | LinkedList    | 1114731                               |
++---------------+----------------------------------------------+---------------+---------------------------------------+
+| TreeSet       | 179                                          | TreeSet       | 249                                   |
++---------------+----------------------------------------------+---------------+---------------------------------------+
+| FASTEST       | TreeSet                                      | FASTEST       | HashSet                               |
++---------------+----------------------------------------------+---------------+---------------------------------------+
++---------------+---------------------------------------------+--------------+-----------------------------------------+
+|               | contains comparison with '23' and data2.txt |              |contains comparison with 'hi' and data2  |
++---------------+---------------------------------------------+--------------+-----------------------------------------+
+| ClosedHashSet | 7311                                        | ClosedHashSet|98                                       |
++---------------+---------------------------------------------+--------------+-----------------------------------------+
+| OpenHashSet   | 5564                                        | OpenHashSet  |108                                      |
++---------------+---------------------------------------------+--------------+-----------------------------------------+
+| HashSet       | 125                                         | HashSet      |103                                      |
++---------------+---------------------------------------------+--------------+-----------------------------------------+
+| LinkedList    | 40700                                       | LinkedList   |786536                                   |
++---------------+---------------------------------------------+--------------+-----------------------------------------+
+| TreeSet       | 171                                         | TreeSet      |131                                      |
++---------------+---------------------------------------------+--------------+-----------------------------------------+
+| FASTEST       | HashSet                                     | FASTEST      | HashSet                                 |
++---------------+---------------------------------------------+--------------+-----------------------------------------+
+
+
+6. Bad results of closedhash set in data1.txt
+7. the strengths of each one:
+ open - this structure easiness comes with the fact that we dont need to clamp so that if we get to a specific hash
+ index then we just check whats there.
+ closed - this structure's easiness comes with the finding of an item because here we have only one item per array spot
+ instead of a linked list
+ 8.results that surprised me the most for linkedList i thought it will have better times than what i've found
+
+
+
+
+
+
+

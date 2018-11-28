@@ -1,0 +1,82 @@
+snirsh
+
+###########################
+### File Description    ###
+###########################
+README - this file...
+AvlTree - contains the AVL Tree implementation and the main methods of the program.
+
+###########################
+### Design              ###
+###########################
+I implemented an inside AVLNode class and the tree is actually a big connection of Nodes.
+I've added special fields for AvlNode and AvlTree in order to manage the methods better
+For example i had a size field for tree to know how many nodes i have in the current tree therefor
+the running time complexity of size() is O(1) where size(T) where T is a stranger tree the running time complexity
+will be O(n) for we need to run on all of the elements in that tree.
+I've added a balance field to AvlNodes in order to recursively update the balance of the tree and check if any
+balancing rotations had to be done.
+
+###########################
+###Implementation Issues###
+###########################
+Well the only issue i can think about is of Iterator. I chose using ArrayList, for it's the best tool I could have
+thought of in order to store all the elements in my tree and then return them in an iterator, it's easier with ArrayList
+because you just return ArrayList<Integer>.Iterator();
+More than that is the amount of helper methods that I thought that needs to be made.
+Like inorder that helps iterator. what inorder does is getting a node and an array list and puts recursively
+all the nodes in an ascending order into the array-list which is exactly what iterator() is supposed to do but it's
+a small step i had to take.
+
+##DESCRIPTION FOR ADD/DELETE##
+rebalance(*)-first i need to describe the rebalance method that i've implemented.
+rebalance will run each time we add or remove an item from the tree and what it does is update the balance field
+of the current subtree and it's parents until the root and it will check on each update the load factor(balance) in this
+way:
+if tree is right heavy(balance==2) and it's right subtree isn't than we do a single left rotation. else we do a
+left-right rotation(=double left) and the same way for left heavy tree...
+after we rotated(if needed) we want to check if any more balancing needs to be done on the rest of the tree from
+the current node until the root.
+
+ADD-
+the algorithm:
+if it's an empty tree insert the new value as the root.
+else:
+we run until :
+we either reached the same value and then we break
+or we reached a parent that has an empty left/right son according to the new value and the node's value
+if the node.value>newValue: then we want to add our newValue to the left son(which is null) or the opposite way around.
+now we rebalance(*) from the parent to the root and break the while statement.
+when we got out of the loop than we surely added an item thus we raise the size field and return ture;
+DELETE-
+the algorithm:
+if the tree is empty we return false(no element to remove)
+now we have 4 temporary nodes:
+n,p,c,d : current node, current node's parent, requested child, node to delete
+we initialize them all to root except d to null(if we didn't find the element nothing will be removed)
+now as long as we don't find the right child to remove we just keep going down on the current subtree until we reach
+the right node or no node at all.
+after we finished this we check if we caught anything if not we just return false
+and what we do if we did is to remove the value this way:
+if it's the root we change the root to the non null child.
+else we check if it's the right or left child and remove it accordingly. after the removal we rebalance the tree
+decrease the size attribute and return true.
+
+###########################
+###     ANSWERS         ###
+###########################
+5.2
+1. RIGHT TO LEFT:
+    {100,50,150,25,75,125,175,12,30,55,112,15}
+2. O(log n)? i'm not sure that i got the question right. but if we'll add a list that always keeps the tree balanced then
+    this is the best running time we can get when inserting n elements, even if no rotations need to be made.
+    well i can only hope i got this one right :)
+5.3
+1. well in my case that function first creates an iterator out of the old tree, which take O(n)
+then i made a loop that runs on the iterator and adds each item to the new tree so:
+construct the iter + run on iter*additemsfromiter=O(n) + O(n)*O(logn) = O(nlogn)
+2. I think that O(nlogn) is the best possible time complexity for this case because there will always
+be a list of length n and n insertions over the iteration of this list so its O(n) times O(logn) [insertions]
+
+
+
